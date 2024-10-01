@@ -2,12 +2,13 @@
 using namespace std;
 
 // definicao de tipo
-struct NO {
+struct NO
+{
 	int valor;
-	NO* prox;
+	NO *prox;
 };
 
-NO* topo = NULL;
+NO *topo = NULL;
 
 // headers
 void menu();
@@ -15,7 +16,6 @@ void inicializar();
 void pop();
 void push();
 //--------------------------
-
 
 int main()
 {
@@ -25,26 +25,30 @@ int main()
 void menu()
 {
 	int op = 0;
-	while (op != 4) {
+	while (op != 4)
+	{
 		system("cls"); // somente no windows
 		cout << "Menu Pilha";
-		cout << endl << endl;
+		cout << endl
+			 << endl;
 		cout << "1 - Inicializar Pilha \n";
 		cout << "2 - Inserir elemento (Push) \n";
 		cout << "3 - Remover elementos (Pop) \n";
 		cout << "4 - Sair \n";
-
 
 		cout << "Opcao: ";
 		cin >> op;
 
 		switch (op)
 		{
-		case 1: inicializar();
+		case 1:
+			inicializar();
 			break;
-		case 2:push();
+		case 2:
+			push();
 			break;
-		case 3: pop();
+		case 3:
+			pop();
 			break;
 		case 4:
 			return;
@@ -59,25 +63,24 @@ void menu()
 void inicializar()
 {
 
-	// se a lista já possuir elementos
+	// se a lista ja possuir elementos
 	// libera a memoria ocupada
-	NO* aux = topo;
-	while (aux != NULL) {
-		NO* paraExcluir = aux;
+	NO *aux = topo;
+	while (aux != NULL)
+	{
+		NO *paraExcluir = aux;
 		aux = aux->prox;
 		free(paraExcluir);
 	}
 
 	topo = NULL;
 	cout << "Pilha inicializada \n";
-
 }
-
 
 void push()
 {
 	// aloca memoria dinamicamente para o novo elemento
-	NO* novo = (NO*)malloc(sizeof(NO));
+	NO *novo = (NO *)malloc(sizeof(NO));
 	if (novo == NULL)
 	{
 		return;
@@ -86,14 +89,19 @@ void push()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
-
-
 }
 
 void pop()
 {
+	if (topo == NULL)
+    {
+        cout << "Pilha vazia \n";
+        return;
+    }
 
-	
-
+    NO *aux = topo;
+    topo = topo->prox;
+    free(aux);
+    cout << "Elemento removido \n";
+	return;
 }
-

@@ -89,6 +89,10 @@ void push()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
+	novo->prox = topo;
+	topo = novo;
+	cout << "Elemento adicionado! \n";
+	return;
 }
 
 void pop()
@@ -102,6 +106,6 @@ void pop()
     NO *aux = topo;
     topo = topo->prox;
     free(aux);
-    cout << "Elemento removido \n";
-	return;
+    cout << "Elemento removido! \n";
+    return;
 }
